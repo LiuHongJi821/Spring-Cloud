@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      fail-fast: true
+      discovery:
+        enabled: true
+        service-id: config-server-client-eurake
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: geust
+  profiles:
+    active: dev
+server:
+  port: 8763
+  eureka:
+    client:
+      service-url:
+        defaultZone: http://localhost:8761/eurake/
+management:
+  security:
+    enabled: false

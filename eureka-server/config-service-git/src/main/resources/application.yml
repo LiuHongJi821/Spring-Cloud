@@ -1,0 +1,14 @@
+server:
+  port: 8769
+spring:
+  cloud:
+    config:
+      server:
+        git:
+           uri: https://github.com/LiuHongJi821/SpringcloudConfig.git
+           search-paths: resource
+           username: LiuHongJi821
+           password:
+      label: master
+  application:
+    name: config-service
