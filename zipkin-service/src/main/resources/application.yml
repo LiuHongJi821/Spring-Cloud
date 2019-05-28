@@ -7,3 +7,34 @@ eureka:
 spring:
   application:
     name: zipkin-server
+  sleuth:
+    sampler:
+      percentage: 1.0
+    enabled: false
+zipkin:
+
+
+
+
+
+
+
+
+
+
+
+
+
+#表示zipkin数据存储方式是elasticsearch
+zipkin.storage.type=elasticsearch
+zipkin.storage.StorageComponent=elasticsearch
+zipkin.storage.elasticsearch.cluster=elasticsearch
+zipkin.storage.elasticsearch.hosts=192.168.41.24:9200
+zipkin.storage.elasticsearch.max-requests=64
+zipkin.storage.elasticsearch.index=zipkin
+zipkin.storage.elasticsearch.index-shards=5
+zipkin.storage.elasticsearch.index-replicas=1
+
+zipkin.collector.rabbitmq.addresses=localhost:5672
+zipkin.collector.rabbitmq.username=guest
+zipkin.collector.rabbitmq.password=guest

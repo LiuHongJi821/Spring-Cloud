@@ -1,0 +1,58 @@
+Spring Boot实现热部署(https://www.cnblogs.com/winner-0715/p/6666579.html)
+
+Spring Boot实现热部署有如下方式：
+
+使用 Spring Loaded
+使用 spring-boot-devtools
+Spring Loaded
+
+这种方式是以Maven插件的形式去加载，所以启动时使用通过Maven命令mvn spring-boot:run启动，而通过Application.run方式启动的会无效，因为通过应用程序启动时，已经绕开了Maven插件机制。
+
+POM集成方式：
+
+复制代码
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <dependencies>
+                <dependency>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>springloaded</artifactId>
+                    <version>1.2.5.RELEASE</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    </plugins>
+</build>
+复制代码
+spring-boot-devtools
+
+这种方式无论怎么启动应用，都可以达到修改文件后重启应用。
+
+POM集成方式：
+
+<!-- 热部署模块 -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+</dependency>
+集成注意：
+
+1、如果发现没有热部署效果，则需要检查IDE配置中有没有打开自动编译。
+
+2、如果使用Thymeleaf模板引擎，需要把模板默认缓存设置为false
+
+#禁止thymeleaf缓存（建议：开发环境设置为false，生成环境设置为true）
+spring.thymeleaf.cache=false
+3、针对devtools的可以指定目录或者排除目录来进行热部署
+
+#添加那个目录的文件需要restart
+spring.devtools.restart.additional-paths=src/main/java
+#排除那个目录的文件不需要restart
+spring.devtools.restart.exclude=static/**,public/**
+4、默认情况下，/META-INF/maven，/META-INF/resources，/resources，/static，/templates，/public这些文件夹下的文件修改不会使应用重启，但是会重新加载（devtools内嵌了一个LiveReload Server，当资源发生改变时，浏览器刷新）
+
+5、在application.properties中配置spring.devtools.restart.enabled=false，此时restart类加载器还会初始化，但不会监视文件更新。在SprintApplication.run之前调用System.setProperty(“spring.devtools.restart.enabled”, “false”);可以完全关闭重启支持。

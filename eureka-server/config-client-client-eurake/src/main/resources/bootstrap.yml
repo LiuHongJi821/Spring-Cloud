@@ -8,10 +8,10 @@ spring:
         enabled: true
         service-id: config-server-client-eurake
   rabbitmq:
-    host: localhost
+    host: 127.0.0.1
     port: 5672
     username: guest
-    password: geust
+    password: guest
   profiles:
     active: dev
 server:

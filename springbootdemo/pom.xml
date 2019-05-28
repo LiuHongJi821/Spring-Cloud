@@ -40,6 +40,17 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>net.unicon.cas</groupId>
+            <artifactId>cas-client-autoconfig-support</artifactId>
+            <version>1.7.0-GA</version>
+        </dependency>
+        <!-- 热部署模块 -->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional> &lt;!&ndash; 这个需要为 true 热部署才有效 &ndash;&gt;
+        </dependency>-->
     </dependencies>
 
     <build>

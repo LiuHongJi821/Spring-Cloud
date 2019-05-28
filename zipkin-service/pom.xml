@@ -33,6 +33,12 @@
 
         <dependency>
             <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-server</artifactId>
         </dependency>
 
@@ -42,9 +48,34 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-storage-elasticsearch-http</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- 使用消息的方式收集数据（使用rabbitmq） -->
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-collector-rabbitmq</artifactId>
+
+        </dependency>
+
+        <!-- 采用 elasticsearch 存储数据 -->
+        <dependency>
+            <groupId>io.zipkin.java</groupId>
+            <artifactId>zipkin-autoconfigure-storage-elasticsearch-http</artifactId>
+
         </dependency>
     </dependencies>
 
@@ -68,6 +99,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <modules>
+        <module>eurake-server</module>
+        <module>eurake-client</module>
+    </modules>
 
 
 </project>
