@@ -21,15 +21,8 @@ public class TestController {
     }
 
     @RequestMapping(value = "/showDao")
-    public Object showDao(){
-        return testServices.showDao(66);
+    public Object showDao(Integer age){
+        return testServices.showDao(age);
     }
-    
-    @RequestMapping(value = "/country/{country}")  
-    public Object showDao(@PathVariable String country){
-        return testServices.findByCountry(country);
-    }
-    
-    
-    
+
 }
